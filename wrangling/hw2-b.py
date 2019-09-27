@@ -1,7 +1,7 @@
 """
 CS 620
 HW2-b
-@author: 
+@author: Gavindya Jayawardena (UIN-01130618)
 """
 import pandas as pd
 import glob

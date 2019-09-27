@@ -1,7 +1,7 @@
 """
 CS 620
 HW2-a
-@author: 
+@author:  Gavindya Jayawardena (UIN-01130618)
 """
 
 
