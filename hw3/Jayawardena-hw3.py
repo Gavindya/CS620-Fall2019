@@ -44,14 +44,13 @@ tickers = unique_symbols(csv_data)
 
 print(tickers)
 df = pd.DataFrame()
+
 df['ticker'] = tickers
 
 df['avg_open'] = df['ticker'].apply(lambda x: calc_avg_open(csv_data,x))
 df['vwap'] = df['ticker'].apply(lambda x: vwap(csv_data,x))
 
-print(df)
-
 for t in tickers:
-    print('%s %s %s' % (ticker_find(xml_dict,t),
+    print('%s%s%s' % (ticker_find(xml_dict,t),
                           df.loc[df['ticker']==t]['avg_open'].to_string(index=False),
                           df.loc[df['ticker']==t]['vwap'].to_string(index=False)))
