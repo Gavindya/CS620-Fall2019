@@ -1,6 +1,6 @@
 """
 CS 620
-HW2-b
+HW3
 @author: Gavindya Jayawardena (UIN-01130618)
 """
 
@@ -29,7 +29,7 @@ def calc_avg_open(csv_data, ticker):
     return np.around(np.mean(csv_data.loc[csv_data['Symbol']==ticker]['Open']),decimals=2)
 
 def vwap(csv_data, ticker):
-    df = csv_data.loc[csv_data['Symbol'] == ticker]
+    df = csv_data[:].loc[csv_data['Symbol'] == ticker]
     df['vwap'] = ((df['High'] + df['Low'] + df['Close']) / 3) * df['Volume']
     sum_vwap = np.sum(df['vwap'])
     sum_volume = np.sum(df['Volume'])
@@ -42,15 +42,13 @@ xml_dict = read_xml(xml_url)
 csv_data = read_csv(csv_url)
 tickers = unique_symbols(csv_data)
 
-print(tickers)
+# print(tickers)
 df = pd.DataFrame()
-
 df['ticker'] = tickers
-
-df['avg_open'] = df['ticker'].apply(lambda x: calc_avg_open(csv_data,x))
-df['vwap'] = df['ticker'].apply(lambda x: vwap(csv_data,x))
+# df['avg_open'] = df['ticker'].apply(lambda x: calc_avg_open(csv_data,x))
+# df['vwap'] = df['ticker'].apply(lambda x: vwap(csv_data,x))
 
 for t in tickers:
-    print('%s%s%s' % (ticker_find(xml_dict,t),
-                          df.loc[df['ticker']==t]['avg_open'].to_string(index=False),
-                          df.loc[df['ticker']==t]['vwap'].to_string(index=False)))
+    print('%s %s %s' % (ticker_find(xml_dict,t),
+                      calc_avg_open(csv_data, t),
+                      vwap(csv_data, t)))
